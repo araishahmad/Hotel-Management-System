@@ -30,6 +30,33 @@ public class HotelManagement {
             System.out.println("Customer " + customer.getName() + "has not checked out yet");
     }
 
+    public void addRoom(Room room){
+        rooms.add(room);
+    }
+
+    public void removeRoom(String roomID){
+        Room removeRoom = null;
+        for (Room room : rooms){
+            if (room.getRoomID().equalsIgnoreCase(roomID)){
+                removeRoom = room;
+                break;
+            }
+        }
+
+        if (removeRoom != null)
+            rooms.remove(removeRoom);
+        else
+            System.out.println("No room found of ID" + roomID);
+    }
+
+    public Room getRoomByID(String roomID){
+        for (Room room : rooms){
+            if (room.getRoomID().equalsIgnoreCase(roomID))
+                return room;
+        }
+        return null;
+    }
+
     public void showRoomsBooked() {
         boolean anyRoomBooked = false;
 
@@ -47,4 +74,15 @@ public class HotelManagement {
         }
     }
 
+    public ArrayList <Customer> getCustomers(){
+        return customers;
+    }
+
+    public Customer findCustomers(String name){
+        for (Customer customer : customers){
+            if (customer.getName().equalsIgnoreCase(name))
+                return customer;
+        }
+        return null;
+    }
 }

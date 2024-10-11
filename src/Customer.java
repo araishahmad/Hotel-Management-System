@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Customer extends User{
     private ArrayList <Room> bookedRoom;
-    private Room room;
 
     public Customer(String name, String CNIC, int age){
         super(name, CNIC, age);
@@ -28,6 +27,10 @@ public class Customer extends User{
         }
         else
             System.out.println("No booking found for the room " + room.getRoomType() + " by " + room.getBookedBy());
+    }
+
+    public ArrayList <Room> getBookedRoom(){
+        return bookedRoom;
     }
 
     public void showRooms(){

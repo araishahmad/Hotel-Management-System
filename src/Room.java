@@ -16,6 +16,10 @@ public class Room {
             this.billPerNight = HotelCriteria.LUXURY.getBillPerNight();
     }
 
+    public Room(String roomID){
+        setRoomID(roomID);
+    }
+
     public String getRoomID() {
         return this.roomID;
     }

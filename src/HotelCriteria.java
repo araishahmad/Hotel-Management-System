@@ -1,6 +1,6 @@
 public enum HotelCriteria {
-    ECONOMY(120),
-    LUXURY(170);
+    ECONOMY(40),
+    LUXURY(110);
 
     private int billPerNight;
 
