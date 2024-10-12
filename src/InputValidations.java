@@ -6,13 +6,13 @@ public class InputValidations {
         return cnic.matches(regex);
     }
 
-    public static int validAge(Scanner input) {
+    public static int validInt(Scanner input, String message) {
         int age = 0;
         boolean correct = false;
 
         while (!correct) {
             try{
-                System.out.println("Enter age: ");
+                System.out.println(message);
                 age = input.nextInt();
                 input.nextLine();
 
@@ -35,7 +35,7 @@ public class InputValidations {
         while (!correct) {
             System.out.println(message);
             str = input.nextLine();
-            if (str.matches("[a-zA-z ]+"))
+            if (str.matches("[a-zA-z0-9 ]+"))
                 correct = true;
             else
                 System.out.println("Invalid string entered, Please enter a valid string");

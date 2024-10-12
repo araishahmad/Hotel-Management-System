@@ -15,7 +15,7 @@ public class UserInputs {
             CNIC = input.nextLine();
         }
 
-        int age = InputValidations.validAge(input);
+        int age = InputValidations.validInt(input, "Enter your age: ");
         return new Customer(name, CNIC, age);
     }
 
@@ -26,8 +26,7 @@ public class UserInputs {
             for (HotelCriteria hotelCriteria : HotelCriteria.values())
                 System.out.println(" - " + hotelCriteria);
 
-            System.out.println("Enter room type: ");
-            roomType = input.nextLine();
+            roomType = InputValidations.validString(input, "Enter room type: ");
 
             try {
                 HotelCriteria.valueOf(roomType.toUpperCase());
@@ -37,8 +36,7 @@ public class UserInputs {
             }
         }
 
-        System.out.println("Enter room ID: ");
-        String roomID = input.nextLine();
+        String roomID = InputValidations.validString(input, "Enter room ID: ");
         return new Room(roomID, roomType);
     }
 
@@ -66,21 +64,18 @@ public class UserInputs {
                 break;
 
             case 2:
-                System.out.println("Enter name: ");
-                String name = input.nextLine();
+                String name = InputValidations.validString(input, "Enter name: ");
                 Customer checkOutCustomer = hotelManagement.findCustomers(name);
                 if (checkOutCustomer == null){
                     System.out.println("No customer of name: " + name);
                     break;
                 }
 
-                System.out.println("Enter room ID: ");
-                String roomID = input.nextLine();
+                String roomID = InputValidations.validString(input, "Enter Room ID: ");
 
                 Room checkOutRoom = hotelManagement.getRoomByID(roomID);
                 if (checkOutRoom != null && checkOutCustomer.getBookedRoom().contains(checkOutRoom)){
-                    System.out.println("Enter nights spent: ");
-                    int nights = input.nextInt();
+                    int nights = InputValidations.validInt(input, "Enter nights spent: ");
                     double totalBill = checkOutRoom.calculateBill(nights);
                     System.out.println("Total bill of customer: $" + totalBill);
 
@@ -92,12 +87,10 @@ public class UserInputs {
                 break;
 
             case 3:
-                System.out.println("Enter nights spent: ");
-                int nights = input.nextInt();
+                int nights = InputValidations.validInt(input, "Enter nights spent: ");
                 input.nextLine();
 
-                System.out.println("Enter room ID: ");
-                String roomId = input.nextLine();
+                String roomId = InputValidations.validString(input, "Enter room ID: ");
                 Room room = new Room(roomId);
 
                 if(room == hotelManagement.getRoomByID(roomId)){
@@ -114,8 +107,7 @@ public class UserInputs {
 
             case 5:
                 if(!hotelManagement.getCustomers().isEmpty()){
-                    System.out.println("Enter name: ");
-                    String findName = input.nextLine();
+                    String findName = InputValidations.validString(input, "Enter name: ");
 
                     Customer getCustomer = hotelManagement.findCustomers(findName);
                     if (getCustomer != null)
