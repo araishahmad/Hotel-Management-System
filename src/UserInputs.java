@@ -4,26 +4,18 @@ public class UserInputs {
     static Scanner input = new Scanner(System.in);
     static HotelManagement hotelManagement = new HotelManagement();  // Hotel management instance
 
-    public static boolean isValidCNIC(String cnic) {
-        String regex = "\\d{5}-\\d{7}-\\d{1}";
-        return cnic.matches(regex);
-    }
 
     public static Customer getCustomerDetails() {
-        System.out.println("Enter your name: ");
-        String name = input.nextLine();
+        String name = InputValidations.validString(input, "Enter your name: ");
 
         System.out.println("Enter your CNIC: ");
         String CNIC = input.nextLine();
-        while (!isValidCNIC(CNIC)) {
+        while (!InputValidations.isValidCNIC(CNIC)) {
             System.out.println("Invalid CNIC, Enter a valid CNIC: ");
             CNIC = input.nextLine();
         }
 
-        System.out.println("Enter your age: ");
-        int age = input.nextInt();
-        input.nextLine(); // Consume newline
-
+        int age = InputValidations.validAge(input);
         return new Customer(name, CNIC, age);
     }
 
